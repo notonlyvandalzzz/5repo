@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get '/contacts' => 'feedback#index'
-
+  post '/contacts' => 'feedback#create'
   get '/' => 'home#index'
 
   resources :articles
