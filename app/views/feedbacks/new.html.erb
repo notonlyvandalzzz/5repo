@@ -1,6 +1,18 @@
 <h1>Leave your feedback</h1>
 
 <%= form_for :feedback, url: feedbacks_path do |f| %>
+
+  <% if @feedback && @feedback.errors.any? %>
+    <p>
+    <ul>
+    <% @feedback.errors.full_messages.each do |msg| %>
+      <li>
+        <%= msg %>
+      </li>
+    <% end %>
+    </ul>
+    </p>
+  <% end %>
   <p>
     <%= f.label :email %><br />
     <%= f.text_field :email %>
