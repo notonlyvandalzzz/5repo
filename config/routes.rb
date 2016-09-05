@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # post '/contacts' => 'feedback#create'
   get '/' => 'home#index'
 
-  resource :feedbacks, only: [:new, :create]
+  resource :feedbacks, only: [:new, :create], path_names: { :new => ''}
   resources :articles
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
