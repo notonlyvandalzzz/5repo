@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
   def create
     @artcl = Article.new(article_params)
     if @artcl.valid?
-      @articl.save
+      @artcl.save
     else
       render action: 'new'
     end
