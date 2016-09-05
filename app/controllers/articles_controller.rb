@@ -4,9 +4,16 @@ class ArticlesController < ApplicationController
 
   end
 
+
   def index
 
   end
+
+
+  def show
+    @article = Article.find(params[:id])
+  end
+
 
   def create
     @artcl = Article.new(article_params)
@@ -18,9 +25,12 @@ class ArticlesController < ApplicationController
     end
   end
 
+
+
   private
 
   def article_params
     params.require(:article).permit(:title, :text) 
   end
+
 end
