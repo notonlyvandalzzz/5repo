@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'home/terms'
+
+  get 'home/about'
+
   # get '/contacts' => 'feedback#index'
   # post '/contacts' => 'feedback#create'
   get '/' => 'home#index'
