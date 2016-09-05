@@ -5,7 +5,11 @@ class FeedbacksController < ApplicationController
   def create
   #  render plain: params[:feedback].inspect
     @feedback = Feedback.new(feedback_params)
-    @feedback.save
+    if @feedback.valid?
+      @feedback.save
+    else
+      render action: 'new'
+    end
   end
 
   private
