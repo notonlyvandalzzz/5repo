@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
     @artcl = Article.new(article_params)
     if @artcl.valid?
       @artcl.save
+      redirect_to @artcl
     else
       render action: 'new'
     end
