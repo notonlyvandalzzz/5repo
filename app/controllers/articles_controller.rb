@@ -4,6 +4,10 @@ class ArticlesController < ApplicationController
 
   end
 
+  def index
+
+  end
+
   def create
     @artcl = Article.new(article_params)
     if @artcl.valid?
