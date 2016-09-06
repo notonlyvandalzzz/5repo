@@ -2,4 +2,5 @@
 <% @articles.each do |artcl| %>
   <h2><%= artcl.title %></h2>
   <p><%= artcl.text %></p>
+  <p><%= link_to 'Show!', article_path(artcl) %></p>
 <% end %>
