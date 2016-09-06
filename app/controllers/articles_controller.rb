@@ -41,7 +41,7 @@ class ArticlesController < ApplicationController
   def destroy
     Article.find(params[:id]).destroy
     flash[:success] = "Article has beed deleted"
-    render action: 'index'
+    redirect_to articles_url
   end
 
 
