@@ -38,6 +38,12 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+    Article.find(params[:id]).destroy
+    flash[:success] = "Article has beed deleted"
+    render action: 'index'
+  end
+
 
   private
 

@@ -4,5 +4,5 @@
   <p><%= artcl.text %></p>
   <p><%= link_to 'Show!', article_path(artcl) %></p>
   <p><%= link_to 'Edit', edit_article_path(artcl) %></p>
-  <p><%= link_to 'Delete', article_path(artcl), :confirm => "Are you sure?", :method => :delete %></p>
+  <p><%= link_to 'Delete', article_path(artcl), data: { confirm: "Are you sure?" }, method:  :delete %></p>
 <% end %>
