@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  root to: "home#index"
+
+  
   get 'home/terms'
 
   get 'home/about'
