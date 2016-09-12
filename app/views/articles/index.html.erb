@@ -4,7 +4,7 @@
     <% @articles.each do |artcl| %>
       <h2><%= artcl.title %></h2>
       <p><%= artcl.text %></p>
-      <p><%= link_to 'Show!', article_path(artcl), class: "btn btn-primary", role: "button" %> <%= link_to 'Edit', edit_article_path(artcl), class: "btn btn-info", role: "button" %> <%= link_to 'Delete', article_path(artcl), class: "btn btn-danger", role: "button", data: { confirm: "Are you sure?" }, method:  :delete %></p>
+      <p><%= link_to 'Show!', article_path(artcl), class: "btn btn-primary btn-xs", role: "button" %> <%= link_to 'Edit', edit_article_path(artcl), class: "btn btn-info btn-xs", role: "button" %> <%= link_to 'Delete', article_path(artcl), class: "btn btn-danger btn-xs", role: "button", data: { confirm: "Are you sure?" }, method:  :delete %></p>
     <% end %>
   </div>
 </div>

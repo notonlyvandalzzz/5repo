@@ -9,7 +9,7 @@
       <%end%>
     </div>
     <hr />
-    <div class="col-xs-6 col-xs-offset-4">
+    <div class="col-xs-6">
     <%= form_for ([@article,@article.comments.build]) do |f| %>
 
       <% if user_signed_in? %>
