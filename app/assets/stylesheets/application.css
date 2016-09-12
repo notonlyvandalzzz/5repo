@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+*= require bootstrap
+ 
 .field_with_errors input {
 	border-color: red;
 }
@@ -21,4 +23,3 @@
 	border-color: red;
 }
 
-*= require bootstrap.min
