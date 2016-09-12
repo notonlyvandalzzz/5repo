@@ -10,24 +10,31 @@
     </div>
     <hr />
     <div class="col-xs-6">
-    <%= form_for ([@article,@article.comments.build]) do |f| %>
+    <%= form_for ([@article,@article.comments.build]), :html => {:class => "form-horizontal center"} do |f| %>
 
       <% if user_signed_in? %>
         <%= f.hidden_field :author, :value => current_user.username %>
       <% else %>
-        <p>
-          <%= f.label :author %><br />
-          <%= f.text_field :author %>
-        </p>
+        <div class="form-group">
+          <%= f.label :author, "Your name:", class: "col-xs-3 control-label" %>
+          <div class="col-xs-9">
+            <%= f.text_field :author, class: "form-control" %>
+          </div>
+        </div>
       <%end%>
-      <p>
-      <%= f.label :body %><br />
-      <%= f.text_area :body %>
-      </p>
-
-      <p>
-        <%= f.submit %>
-      </p>
+      <div class="form-group">
+        <%= f.label :body, "Input comment", class: "col-xs-3 control-label" %>
+        <div class="col-xs-9">
+          <%= f.text_area :body, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+         <button type="submit" class="btn btn-default">Sign in</button>
+         <%= f.submit "Send", class: "btn btn-default btn-primary" %>
+       </div>
+      </div>
+  
       </div>
 
     <% end %>
