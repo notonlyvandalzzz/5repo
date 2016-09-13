@@ -9,7 +9,7 @@ describe Article do
       is_at_least(5).is_at_most(4000)
     end 
     it do 
-      should validate_length_of(:titile).
+      should validate_length_of(:title).
       is_at_least(1).is_at_most(140)
     end 
   end
