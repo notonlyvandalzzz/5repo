@@ -1,8 +1,6 @@
 require 'spec_helper'
 
-describe "something" do 
+describe Feedback do 
 
-  it "has something" do
-    
-  end
+  it { should validate_presence_of :email }
 end
