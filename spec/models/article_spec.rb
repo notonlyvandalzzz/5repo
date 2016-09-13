@@ -12,7 +12,7 @@ describe Article do
 
   describe "#subject" do
     it "returns article title" do
-      tmpuser = create(:user, id: 1, :username: 'John')
+      tmpuser = create(:user, id: 1, username: 'John')
       article = create(:article, title: 'Hello world', text: 'Some text', user: User.find(1))
       expect(article.subject).to eq 'Hello world'
     end
