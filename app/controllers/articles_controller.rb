@@ -43,10 +43,11 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    Article.find(params[:id]).destroy
-    if current_user.id != @article.user.id 
+    
+    if current_user.id != Article.find(params[:id]).user.id 
       redirect_to articles_url
     else
+      Article.find(params[:id]).destroy
       flash[:success] = "Article has beed deleted"
       redirect_to articles_url
     end
