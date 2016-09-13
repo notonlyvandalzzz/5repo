@@ -10,5 +10,11 @@ describe Article do
     it { should belong_to(:user) }
   end
 
+  describe "#subject" do
+    it "returns article title" do
+      article = create(:article, title: 'Hello world')
+      expect(article.subject).to eq 'Hello world'
+    end
+  end
 
 end

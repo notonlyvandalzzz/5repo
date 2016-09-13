@@ -3,4 +3,8 @@ class Article < ApplicationRecord
   validates :text, presence: true, length: { minimum: 5 }
   has_many :comments
   belongs_to :user
+
+  def subject
+    title
+  end
 end
