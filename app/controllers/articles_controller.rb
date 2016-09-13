@@ -30,7 +30,7 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
-    render action: 'index' if current_user.id != @article.user.id  
+    redirect_to articles_url if current_user.id != @article.user.id  
   end
 
   def update
@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
   def destroy
     Article.find(params[:id]).destroy
     if current_user.id != @article.user.id 
-      render action: 'index'
+      redirect_to articles_url
     else
       flash[:success] = "Article has beed deleted"
       redirect_to articles_url
