@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
-  validates :title, presence: true
-  validates :text, presence: true, length: { minimum: 5 }
+  validates :title, presence: true, length: { in: 1..140 }
+  validates :text, presence: true, length: { in: 5..4000 }
   has_many :comments
   belongs_to :user
 
