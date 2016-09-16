@@ -40,8 +40,8 @@
 
 
 
-        <div class="alert alert-warning"><%= notice %></div>
-        <div class="alert alert-danger"><%= alert %></div>
+        <% if notice %><div class="alert alert-warning"><%= notice %></div><%end%>
+        <% if error %><div class="alert alert-danger"><%= alert %></div><%end%>
         <%= yield %>
     </div>
   </body>
