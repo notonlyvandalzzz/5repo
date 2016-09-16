@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  root to: "home#index"
+  root to: "articles#index"
 
   
-  get 'home/terms'
+  # get 'home/terms'
 
-  get 'home/about'
+ # get 'home/about'
 
   # get '/contacts' => 'feedback#index'
   # post '/contacts' => 'feedback#create'
-  get '/' => 'home#index'
+  #get '/' => 'home#index'
   get '/terms' => 'home#terms'
   get '/about' => 'home#about'
 
