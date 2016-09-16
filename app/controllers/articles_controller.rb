@@ -45,6 +45,7 @@ class ArticlesController < ApplicationController
   def destroy
     
     if current_user.id != Article.find(params[:id]).user.id 
+      flash[:notice] = "You can delete only your own posts."
       redirect_to articles_url
     else
       Article.find(params[:id]).destroy
