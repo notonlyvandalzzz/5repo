@@ -8,6 +8,7 @@ feature "Feedback creation" do
   end
 
   scenario "allow guest to create feedback" do
+    visit '/feedbacks'
     fill_in :feedback_email, :with => '1234@vl.ru'
     fill_in :feedback_content, :with => 'Your site is awful'
     click_button 'Send message'
