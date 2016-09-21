@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   # get '/contacts' => 'feedback#index'
   # post '/contacts' => 'feedback#create'
   #get '/' => 'home#index'
-  get '/terms' => 'home#terms'
-  get '/about' => 'home#about'
+  get '/terms' => 'home#terms', :as => 'terms_page'
+  get '/about' => 'home#about', :as => 'about_page'
 
   resource :feedbacks, only: [:new, :create], path_names: { :new => ''}
   resources :articles do
