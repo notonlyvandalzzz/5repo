@@ -6,4 +6,10 @@ feature "Feedback creation" do
 
     expect(page).to have_content I18n.t('feedbacks.leave_feedback')
   end
+
+  scenario "allow guest to create feedback" do
+    fill_in :feedback_email, :with => '1234@vl.ru'
+    fill_in :feedback_content, :with => 'Your site is awful'
+    click_button 'Send message'
+  end
 end
