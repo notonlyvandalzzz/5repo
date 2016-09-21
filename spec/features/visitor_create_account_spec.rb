@@ -11,6 +11,6 @@ feature "Account creation" do
 
     click_button 'Sign up'
 
-    expect(page).to have_content 'success'
+    expect(page).to have_content I18n.t('devise.registrations.signed_up')
   end
 end
