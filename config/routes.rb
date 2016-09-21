@@ -26,4 +26,11 @@ Rails.application.routes.draw do
   # rails g model Feedback email:string content:text
   # rake db:migrate
 
+
+  # get ':name' => 'users#index', as 'user_page'
+  # <%= link_to @user.username, user_page_path(@user.username) %>
+  # into views:
+  # def index
+  #   if params[:name]
+  #     @user = User.where(username: params[:name]).first
 end
