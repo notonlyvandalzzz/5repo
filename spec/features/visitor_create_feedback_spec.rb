@@ -12,5 +12,6 @@ feature "Feedback creation" do
     fill_in :feedback_email, :with => '1234@vl.ru'
     fill_in :feedback_content, :with => 'Your site is awful'
     click_button 'Send message'
+    expect(page).to have_content 'Thanks!'
   end
 end
