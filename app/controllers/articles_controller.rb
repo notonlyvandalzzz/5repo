@@ -24,6 +24,7 @@ class ArticlesController < ApplicationController
       @artcl.save
       redirect_to @artcl
     else
+      flash[:notice] = @artcl.errors.messages
       render action: 'new'
     end
   end
