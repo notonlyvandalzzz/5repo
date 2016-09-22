@@ -17,7 +17,7 @@ feature "Article creation" do
     fill_in :article_title, :with => 'test_article_title'
     fill_in :article_text, :with => 'test_article_text'
     click_button 'Save Article'
-    expect(page).to have_content ('New article')
+    expect(page).to have_content ('test_article_title')
   end
 end
 
