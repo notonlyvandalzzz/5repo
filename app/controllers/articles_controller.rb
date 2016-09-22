@@ -39,6 +39,7 @@ class ArticlesController < ApplicationController
     if @article.update(article_params) 
       redirect_to @article
     else
+      flash[:notice] = @artcl.errors.messages
       render action: 'edit'
     end
   end
@@ -59,7 +60,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :text) 
+    params.require(:article).permit(:title, :text, :user_id) 
   end
 
 end
