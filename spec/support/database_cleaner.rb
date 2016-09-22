@@ -18,49 +18,87 @@ require 'capybara/rspec'
 
 #...
 
-RSpec.configure do |config|
+# RSpec.configure do |config|
 
+#   config.use_transactional_fixtures = false
+
+#   config.before(:suite) do
+#     if config.use_transactional_fixtures?
+#       raise(<<-MSG)
+#         Delete line `config.use_transactional_fixtures = true` from rails_helper.rb
+#         (or set it to false) to prevent uncommitted transactions being used in
+#         JavaScript-dependent specs.
+
+#         During testing, the app-under-test that the browser driver connects to
+#         uses a different database connection to the database connection used by
+#         the spec. The app's database connection would not be able to access
+#         uncommitted transaction data setup over the spec's database connection.
+#       MSG
+#     end
+#     DatabaseCleaner.clean_with(:truncation)
+#   end  
+
+#   config.before(:each) do
+#     DatabaseCleaner.strategy = :transaction
+#   end
+
+#   config.before(:each, type: :feature) do
+#     # :rack_test driver's Rack app under test shares database connection
+#     # with the specs, so continue to use transaction strategy for speed.
+#     driver_shares_db_connection_with_specs = Capybara.current_driver == :rack_test
+
+#     if !driver_shares_db_connection_with_specs
+#       # Driver is probably for an external browser with an app
+#       # under test that does *not* share a database connection with the
+#       # specs, so use truncation strategy.
+#       DatabaseCleaner.strategy = :truncation
+#     end
+#   end
+
+#   config.before(:each) do
+#     DatabaseCleaner.start
+#   end
+
+#   config.append_after(:each) do
+#     DatabaseCleaner.clean
+#   end
+
+# end
+
+
+RSpec.configure do |config|
+  # If you're not using ActiveRecord, or you'd prefer not to run 
+  # each of your examples within a transaction, remove the following 
+  # line or assign false instead of true.
   config.use_transactional_fixtures = false
 
+  # Clean up and initialize database before 
+  # running test exmaples
   config.before(:suite) do
-    if config.use_transactional_fixtures?
-      raise(<<-MSG)
-        Delete line `config.use_transactional_fixtures = true` from rails_helper.rb
-        (or set it to false) to prevent uncommitted transactions being used in
-        JavaScript-dependent specs.
-
-        During testing, the app-under-test that the browser driver connects to
-        uses a different database connection to the database connection used by
-        the spec. The app's database connection would not be able to access
-        uncommitted transaction data setup over the spec's database connection.
-      MSG
-    end
+    # Truncate database to clean up garbage from 
+    # interrupted or badly written examples
     DatabaseCleaner.clean_with(:truncation)
-  end  
 
-  config.before(:each) do
-    DatabaseCleaner.strategy = :transaction
+    # Seed dataase. Use it only for essential
+    # to run application data.
+    load "#{Rails.root}/db/seeds.rb"
   end
 
-  config.before(:each, type: :feature) do
-    # :rack_test driver's Rack app under test shares database connection
-    # with the specs, so continue to use transaction strategy for speed.
-    driver_shares_db_connection_with_specs = Capybara.current_driver == :rack_test
+  config.around(:each) do |example|
+    # Use really fast transaction strategy for all 
+    # examples except `js: true` capybara specs
+    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
 
-    if !driver_shares_db_connection_with_specs
-      # Driver is probably for an external browser with an app
-      # under test that does *not* share a database connection with the
-      # specs, so use truncation strategy.
-      DatabaseCleaner.strategy = :truncation
+    # Start transaction
+    DatabaseCleaner.cleaning do
+
+      # Run example
+      example.run
     end
-  end
 
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
+    load "#{Rails.root}/db/seeds.rb" if example.metadata[:js]
 
-  config.append_after(:each) do
-    DatabaseCleaner.clean
+    # Clear session data
+    Capybara.reset_sessions!
   end
-
 end
