@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature "Article creation" do 
-  before (:all) do
+  before (:each) do
     sign_up
   end
 
